@@ -43,7 +43,9 @@ public class MapRootBase<T,U> : MonoBehaviourEx where T : MapChipBase<U> where U
 		m_boxCollider.size = new Vector3( 10000.0f , 10000.0f , 0.0f );
 		m_boxCollider.center = new Vector3( 0.0f , 10000.0f*0.5f , 0.0f );
 
-		m_mapData.Load (_strMapData);
+		if (m_mapData.Load (_strMapData) == false) {
+			m_mapData.LoadResources (_strMapData);
+		}
 
 		myTransform.localPosition = new Vector3 (0.0f, -300.0f, 0.0f);
 		m_mapchipList.Clear ();
