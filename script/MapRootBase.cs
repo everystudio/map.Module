@@ -19,7 +19,8 @@ public class MapRootBase<T,U> : MonoBehaviourEx where T : MapChipBase<U> where U
 	protected BoxCollider m_boxCollider;
 	protected Camera m_camera;
 
-	protected List<T> m_mapchipList = new List<T>();
+	// あんまよくないんだろうけど、めんどくさくなった
+	public List<T> m_mapchipList = new List<T>();
 
 	public void MoveAdd( float _fX , float _fY ){
 		myTransform.localPosition += new Vector3 (_fX, _fY, 0.0f); 
@@ -295,10 +296,10 @@ public class MapRootBase<T,U> : MonoBehaviourEx where T : MapChipBase<U> where U
 	public bool GetGrid( Vector2 _inputPoint , out int _iX , out int _iY ){
 		return GetGrid (gameObject, _inputPoint, out _iX, out _iY );
 	}
+
 	public bool GridHit( int _iX , int _iY , int _iItemX , int _iItemY , int _iItemWidth , int _iItemHeight , out int _iOffsetX , out int _iOffsetY ){
 		_iOffsetX = 0;
 		_iOffsetY = 0;
-
 		//Debug.Log ("x:" + _dataItem.x.ToString () + " y:" + _dataItem.y.ToString () + " w:" + _dataItem.width.ToString () + " h:" + _dataItem.height.ToString ());
 
 		bool bHit = false;
@@ -316,42 +317,16 @@ public class MapRootBase<T,U> : MonoBehaviourEx where T : MapChipBase<U> where U
 		return bHit;
 	}
 
-	public bool GridHit( int _iX , int _iY , DataItemParam _dataItem , out int _iOffsetX , out int _iOffsetY ){
-
-		return GridHit (_iX, _iY, _dataItem.x, _dataItem.y, _dataItem.width, _dataItem.height, out _iOffsetX, out _iOffsetY);
-		/*
-		_iOffsetX = 0;
-		_iOffsetY = 0;
-
-		//Debug.Log ("x:" + _dataItem.x.ToString () + " y:" + _dataItem.y.ToString () + " w:" + _dataItem.width.ToString () + " h:" + _dataItem.height.ToString ());
-
-		bool bHit = false;
-		for (int x = _dataItem.x; x < _dataItem.x + _dataItem.width; x++) {
-			for (int y = _dataItem.y; y < _dataItem.y + _dataItem.height; y++) {
-				if (_iX == x && _iY == y) {
-
-					_iOffsetX = x - _dataItem.x;
-					_iOffsetY = y - _dataItem.y;
-					bHit = true;
-					break;
-				}
-			}
-		}
-		return bHit;
-		*/
+	public bool GridHit( int _iX , int _iY , U _param , out int _iOffsetX , out int _iOffsetY ){
+		return GridHit (_iX, _iY, _param.x, _param.y, _param.width, _param.height, out _iOffsetX, out _iOffsetY);
 	}
 
-	public bool GridHit( int _iX , int _iY , DataItemParam _dataItem ){
-
+	public bool GridHit( int _iX , int _iY , U _param ){
 		int iOffsetX = 0;
 		int iOffsetY = 0;
 
-		return GridHit (_iX, _iY, _dataItem, out iOffsetX, out iOffsetY);
+		return GridHit (_iX, _iY, _param, out iOffsetX, out iOffsetY);
 	}
-
-
-
-
 
 	// Update is called once per frame
 	void Update () {

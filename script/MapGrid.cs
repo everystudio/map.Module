@@ -16,7 +16,7 @@ public class MapGrid {
 		y = 0;
 	}
 
-	static  public bool Equals( Grid _a , Grid _b ){
+	static  public bool Equals( MapGrid _a , MapGrid _b ){
 		return (_a.x == _b.x && _a.y == _b.y);
 	}
 	public bool Equals( int _x , int _y ){
@@ -37,37 +37,45 @@ public class MapGrid {
 		return;
 	}
 
-	static public void SetUsingGrid( ref List<MapGrid> _gridList , DataItemParam _dataItem ){
-		setUsingGrid (ref _gridList, _dataItem.x, _dataItem.y, _dataItem.width, _dataItem.height);
+	static public void SetUsingGrid<U>( ref List<MapGrid> _gridList , U _param ) where U : DataMapChipBaseParam{
+		setUsingGrid (ref _gridList, _param.x, _param.y, _param.width, _param.height);
 		return;
 	}
 
-	static public void SetUsingGrid( ref List<MapGrid> _gridList , List<DataItemParam> _dataItemList ){
+	static public void SetUsingGrid<U>( ref List<MapGrid> _gridList , List<U> _paramList , List<int> _ignoreSerialList )where U : DataMapChipBaseParam{
 		_gridList.Clear ();
-		foreach (DataItemParam data in _dataItemList) {
-			List<MapGrid> grid_list = new List<MapGrid> ();
-			SetUsingGrid (ref grid_list, data);
-			foreach (MapGrid grid in grid_list) {
-				_gridList.Add (grid);
+		foreach (U param in _paramList) {
+			bool bInsert = true;
+			foreach (int iIgnoreSerial in _ignoreSerialList) {
+				if (param.mapchip_serial == iIgnoreSerial) {
+					bInsert = false;
+				}
+			}
+			if (bInsert) {
+				List<MapGrid> grid_list = new List<MapGrid> ();
+				SetUsingGrid (ref grid_list, param);
+				foreach (MapGrid grid in grid_list) {
+					_gridList.Add (grid);
+				}
 			}
 		}
 		return;
 	}
 
-	static public bool AbleSettingItem( CsvItemParam _dataItem , int _iX , int _iY , List<MapGrid> _gridList ){
+	static public bool AbleSettingItem<U>( U _param , int _iX , int _iY , int _iMaxX , int _iMaxY, List<MapGrid> _gridList )where U : DataMapChipBaseParam{
 		bool bRet = true;
 
 		List<MapGrid> useGrid = new List<MapGrid> ();
-		setUsingGrid (ref useGrid, _iX, _iY, _dataItem.size, _dataItem.size);
+		setUsingGrid (ref useGrid, _iX, _iY, _param.width, _param.height);
 
 		foreach (MapGrid check_grid in useGrid) {
 			if (check_grid.x < 0) {
 				bRet = false;
 			} else if (check_grid.y < 0) {
 				bRet = false;
-			} else if (DataManager.user.m_iWidth <= check_grid.x) {
+			} else if (_iMaxX <= check_grid.x) {
 				bRet = false;
-			} else if (DataManager.user.m_iHeight <= check_grid.y) {
+			} else if (_iMaxY <= check_grid.y) {
 				bRet = false;
 			} else {
 			}
