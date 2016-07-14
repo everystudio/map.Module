@@ -12,7 +12,7 @@ abstract public class MapChipBase<U> : MonoBehaviourEx where U : DataMapChipBase
 			return m_mapData;
 		}
 	}
-	private U m_MapChipParam = new U();
+	private U m_MapChipParam;
 	public U param{
 		get{
 			return m_MapChipParam;
@@ -122,6 +122,17 @@ abstract public class MapChipBase<U> : MonoBehaviourEx where U : DataMapChipBase
 
 	}
 
+	protected bool m_bSetAble;
+	public void SetEditAble( bool _bFlag ){
+		m_bSetAble = _bFlag;
+		if (_bFlag) {
+			TweenColor.Begin (gameObject, 0.025f, Color.green);
+			TweenAlpha.Begin (gameObject, 0.025f, 0.75f);
+		} else {
+			TweenColor.Begin (gameObject, 0.025f, Color.red);
+			TweenAlpha.Begin (gameObject, 0.025f, 0.75f);
+		}
+	}
 
 
 }

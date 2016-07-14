@@ -42,7 +42,7 @@ public class MapRootBase<T,U> : MonoBehaviourEx where T : MapChipBase<U> where U
 		// 必要があれば外部化する
 		m_boxCollider = gameObject.AddComponent<BoxCollider> ();
 		m_boxCollider.size = new Vector3( 10000.0f , 10000.0f , 0.0f );
-		m_boxCollider.center = new Vector3( 0.0f , 10000.0f*0.5f , 0.0f );
+		m_boxCollider.center = new Vector3( 0.0f , 10000.0f*0.5f , 10000.0f );
 
 		if (m_mapData.Load (_strMapData) == false) {
 			m_mapData.LoadResources (_strMapData);
