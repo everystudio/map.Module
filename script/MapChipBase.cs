@@ -60,7 +60,7 @@ abstract public class MapChipBase<U> : MonoBehaviourEx where U : DataMapChipBase
 	}
 
 	virtual protected void remove(){
-		Debug.LogError ("please Inheritance");
+		//Debug.LogError ("please Inheritance");
 	}
 	public void Remove(){
 		// データ的なものを削除するロジックを継承先で実装してください
