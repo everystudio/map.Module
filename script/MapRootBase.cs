@@ -222,6 +222,7 @@ public class MapRootBase<T,U> : MonoBehaviourEx where T : MapChipBase<U> where U
 
 		checkRaodSub (1, 1);
 
+		/*
 		// 状態を一度リセット
 		foreach (T mapchip in m_mapchipList) {
 			switch ((DefineOld.Item.Category)mapchip.param.category) {
@@ -235,6 +236,7 @@ public class MapRootBase<T,U> : MonoBehaviourEx where T : MapChipBase<U> where U
 				break;
 			}
 		}
+		*/
 
 		return;
 	}
