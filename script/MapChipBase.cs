@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 // テンプレートだと、Tからはじめるのがよくありますが、親のクラスにあわせるためにUでDataMapChipBaseParamを宣言します
 
-abstract public class MapChipBase<U> : MonoBehaviourEx where U : DataMapChipBaseParam , new(){
+abstract public class MapChipBase<U> : MonoBehaviourEx where U : DataMapchipBaseParam , new(){
 
 	protected MapData m_mapData;
 	public MapData mapData{

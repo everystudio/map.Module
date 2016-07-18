@@ -2,8 +2,8 @@
 using System.Collections;
 
 [System.Serializable]
-public class DataMapChipBaseParam : MasterMapChipBaseParam{
-	public DataMapChipBaseParam(){
+public class DataMapchipBaseParam : MasterMapchipBaseParam{
+	public DataMapchipBaseParam(){
 	}
 
 	public int m_mapchip_serial;
@@ -26,7 +26,7 @@ public class DataMapChipBaseParam : MasterMapChipBaseParam{
 	}
 }
 
-public class DataMapChipBase<T> : CsvData<T> where T : DataMapChipBaseParam , new(){
+public class DataMapchipBase<T> : CsvData<T> where T : DataMapchipBaseParam , new(){
 
 	public bool GetExist( int _iX , int _iY , out T _param ){
 		bool bRet = false;

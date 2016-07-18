@@ -37,12 +37,12 @@ public class MapGrid {
 		return;
 	}
 
-	static public void SetUsingGrid<U>( ref List<MapGrid> _gridList , U _param ) where U : DataMapChipBaseParam{
+	static public void SetUsingGrid<U>( ref List<MapGrid> _gridList , U _param ) where U : DataMapchipBaseParam{
 		setUsingGrid (ref _gridList, _param.x, _param.y, _param.width, _param.height);
 		return;
 	}
 
-	static public void SetUsingGrid<U>( ref List<MapGrid> _gridList , List<U> _paramList , List<int> _ignoreSerialList )where U : DataMapChipBaseParam{
+	static public void SetUsingGrid<U>( ref List<MapGrid> _gridList , List<U> _paramList , List<int> _ignoreSerialList )where U : DataMapchipBaseParam{
 		_gridList.Clear ();
 		foreach (U param in _paramList) {
 			bool bInsert = true;
@@ -62,7 +62,7 @@ public class MapGrid {
 		return;
 	}
 
-	static public bool AbleSettingItem<U>( U _param , int _iX , int _iY , int _iMaxX , int _iMaxY, List<MapGrid> _gridList )where U : DataMapChipBaseParam{
+	static public bool AbleSettingItem<U>( U _param , int _iX , int _iY , int _iMaxX , int _iMaxY, List<MapGrid> _gridList )where U : DataMapchipBaseParam{
 		bool bRet = true;
 
 		List<MapGrid> useGrid = new List<MapGrid> ();

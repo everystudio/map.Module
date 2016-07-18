@@ -2,8 +2,8 @@
 using System.Collections;
 
 [System.Serializable]
-public class MasterMapChipBaseParam : MasterItemParamBase{
-	public MasterMapChipBaseParam(){
+public class MasterMapchipBaseParam : MasterItemParam{
+	public MasterMapchipBaseParam(){
 	}
 
 	public int m_width;
@@ -23,7 +23,7 @@ public class MasterMapChipBaseParam : MasterItemParamBase{
 	}
 }
 
-public class MasterMapChipBase<T> : CsvData<T> where T : MasterMapChipBaseParam , new(){
+public class MasterMapchipBase<T> : CsvData<T> where T : MasterMapchipBaseParam , new(){
 	
 
 }
