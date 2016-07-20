@@ -6,9 +6,9 @@ public class MasterMapchipBaseParam : MasterItemParam{
 	public MasterMapchipBaseParam(){
 	}
 
-	public int m_width;
-	public int m_height;
-	public int m_capacity;
+	protected int m_width;
+	protected int m_height;
+	protected int m_capacity;
 
 	public int width { get{ return m_width;} set{m_width = value; } }
 	public int height { get{ return m_height;} set{m_height = value; } }
